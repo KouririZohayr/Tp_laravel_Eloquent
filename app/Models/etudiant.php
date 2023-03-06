@@ -11,7 +11,7 @@ class etudiant extends Model
     use HasFactory;
     protected $table = 'etudiants';
     protected $primaryKey='codeE';
-    protected $fillable = ['nom','prenom' ,'adresse' ,'dateNaissance' ,'nom' ,'prenom','idclasse'];
+    protected $fillable = ['nom','prenom' ,'adresse' ,'dateNaissance' ,'nom' ,'prenom','idclasse','image'];
     public function classes(){
         return $this->belongsTo(classe::class,'idclasse');
     }

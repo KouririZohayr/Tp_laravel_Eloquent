@@ -6,7 +6,9 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     @vite('resources/css/app.css')
 </head>
+
 <body class="{{--  bg-slate-200  --}} bg-sky-200">
+    @include('nav')
     <form action="{{ route('logout') }}" method="POST">
         @csrf()
         <button  type="submit" class="bg-sky-500  active:bg-sky-600 font-bold uppercase text-base px-8 py-3 rounded shadow-md hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button">
@@ -19,7 +21,7 @@
     </div>
     <div class="container mx-auto mt-10">
         <div class=" grid  max-sm:grid-cols-1  grid-cols-2 gap-10   ">
-        
+            
             @foreach($formations as $formation)   
             
                 <div class=" border-2 border-sky-400 p-6 m-6 rounded-md ">

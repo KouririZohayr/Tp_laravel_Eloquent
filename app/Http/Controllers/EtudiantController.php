@@ -40,12 +40,19 @@ class EtudiantController extends Controller
     public function store(Request $request)
     {  
         $classe=classe::find($request->idclasse);
-       $idetudiant=etudiant::select('codeE')->get();
+        $idetudiant=etudiant::select('codeE')->get();
+        //image
+        $file= $request->file('image');
+        $filename= date('YmdHi').$file->getClientOriginalName();
+        $file-> move(public_path('public/Image'), $filename);
+        $data['image']= $filename;
+       
         $etudiants = new etudiant([
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'adresse' =>  $request->adresse,
             'dateNaissance' => $request->dateNaissance,
+            'image'=> $data['image']
             ]); 
        
         $classe->etudiants()->save($etudiants);
@@ -59,7 +66,17 @@ class EtudiantController extends Controller
     */
     public function show(etudiant $etudiant)
     {
-        //
+        $etudiant=etudiant::find($etudiant->codeE); 
+        $classe=classe::find($etudiant->idclasse);
+        $formation=formation::find($classe->idformation);
+        /* $etudiants=$classe->formation()->get(); */   
+        $avi=avi::where('ide',$etudiant->codeE)->get();
+        /* $etudiants=$etudiant->formations();
+          $point=$etudiants->pivot->points; */ 
+         /*
+        $formation=formation::find($etudiants->pivot->idf)->Titre;
+        $classe=classe::find($etudiant->idclasse)->libelle; */
+        return view('infoEtudiant',['etudiant'=>$etudiant,'note'=>$avi[0]->points,'formation'=>$formation->Titre,'classe'=>$classe->libelle]) ;
     }
 
     /**
@@ -80,14 +97,21 @@ class EtudiantController extends Controller
     {
         
         $classe = classe::find($etudiant->idclasse);
-        $etudiantup = $classe->etudiants()->find($etudiant->codeE); 
-        
+        $etudiantup = $classe->etudiants()->find($etudiant->codeE);
+        //newIMG 
+       
+        $file= $request->file('image');
+        $filename= date('YmdHi').$file->getClientOriginalName();
+        $file-> move(public_path('public/Image'), $filename);
+        $data['image']= $filename;
+
         $etudiantup->update([
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'adresse' => $request->adresse,
             'dateNaissance' => $request->dateNaissance,
             'idclasse' => $request->idclasse,
+            'image'=>  $data['image'],
         ]); 
         $avi=avi::where('ide',$etudiantup->codeE);
         $avi->update([

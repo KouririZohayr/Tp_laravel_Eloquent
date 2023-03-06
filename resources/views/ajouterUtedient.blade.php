@@ -2,7 +2,7 @@
 @section('section')
     <div class="container lg:w-2/6 max-sm:w-full  sm:w-4/6 mt-10 mx-auto order-2 p-8 shadow-xl shadow-blue-500/40  " >
         <h1 class="text-4xl  font-bold text-red-600 mb-8 ">AJOUTER FORMATION </h1>
-        <form class="w-full " action="{{ url('etudiants')}}" method="POST">
+        <form class="w-full " action="{{ url('etudiants')}}" method="POST" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="flex flex-wrap -mx-3 mb-6">
               
@@ -47,6 +47,14 @@
                     <option value="{{ $classe->idc }}">{{ $classe->libelle }}</option>
                   @endforeach
                 </select>
+              </div>
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full  px-3">
+                <label  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                  Photo de Profile
+                </label>
+                <input name="image" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="file_input" type="file">
               </div>
             </div>
             <div class="flex flex-wrap -mx-3 mb-6">

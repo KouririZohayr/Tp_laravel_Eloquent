@@ -19,6 +19,7 @@
             }
         </style>
     </head>
+    @include('nav')
     <body class="  bg-slate-200 ">
         <div class="  container mx-auto mt-20  " >
             

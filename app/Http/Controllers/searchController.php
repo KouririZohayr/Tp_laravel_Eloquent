@@ -17,16 +17,19 @@ class searchController extends Controller
             ->orWhere('adresse','like','%'.$query.'%')
             ->orderBy('codeE','desc')->get();
         }
+        $lien="public/Image/";
       
         $result="";
         if($data->count()!=0){
           
             foreach($data as $etudiant){
-
+             
                 $etudiant->idclasse =classe::find($etudiant->idclasse)->libelle;
                 
                 $result.= '<tr class="bg-white border-b">
-                                
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                            <img  src="{{ url('.$lien.''.$etudiant->image.') }}" class="text-center block w-32  rounded-50" alt="Photo_profile">
+                          </td>                 
                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                     '. $etudiant->nom .'
                 </td>

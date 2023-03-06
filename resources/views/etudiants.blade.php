@@ -21,7 +21,9 @@
             }
         </style>
     </head>
+
     <body class="  bg-slate-200 ">
+      @include('nav')
         <div class="  container mx-auto mt-20  " >
           <form action="{{ route('logout') }}" method="POST">
             @csrf()
@@ -54,7 +56,10 @@
                  
                   <table class="min-w-full text-center   ">
                     <thead class="border-b bg-gray-800">
-                      <tr>  
+                      <tr> 
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4 ">
+                          Photo de Profile
+                        </th> 
                         <th scope="col" class="text-sm font-medium text-white px-6 py-4 ">
                           Nom
                         </th>
@@ -79,7 +84,9 @@
  
                         @foreach ($etudiants  as $etudiant)
                         <tr class="bg-white border-b">
-                            
+                          <td class="text-sm text-gray-900 flex justify-center font-light px-6 py-4 whitespace-nowrap">
+                            <img  src="{{ url('public/Image/'.$etudiant->image) }}" class="text-center h-24 max-w-full rounded-full" alt="Photo_profile">
+                          </td> 
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                 {{ $etudiant->nom }}
                             </td>
@@ -95,8 +102,8 @@
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                 {{ $etudiant->idclasse }} 
                             </td>
-                            <td class="text-sm font-light px-6 py-4 flex whitespace-nowrap ">
-                              <a href="/formations/classe/etudiantsInfo/{{ $etudiant->codeE }}" class="bg-green-500 mx-5 hover:bg-green-900 text-white font-bold py-2 px-4 border border-green-500 rounded">
+                            <td class="text-sm font-light flex justify-center  tems-center  whitespace-nowrap ">
+                              <a href="/etudiants/{{ $etudiant->codeE }}" class="  bg-green-500 mx-5 hover:bg-green-900 text-white font-bold py-2 px-4 border border-green-500 rounded">
                                 Show info 
                               </a>
                                 <a href="/etudiants/{{ $etudiant->codeE }}/edit" class="bg-green-500 mx-5 hover:bg-green-900 text-white font-bold py-2 px-4 border border-green-500 rounded">

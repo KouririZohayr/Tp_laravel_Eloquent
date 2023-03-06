@@ -38,6 +38,9 @@
                     <thead class="border-b bg-gray-800">
                       <tr>  
                         <th scope="col" class="text-sm font-medium text-white px-6 py-4 ">
+                          Photo de Profile
+                        </th>
+                        <th scope="col" class="text-sm font-medium text-white px-6 py-4 ">
                           Nom
                         </th>
                         <th scope="col" class="text-sm font-medium text-white px-6 py-4">
@@ -63,11 +66,11 @@
                         </th>
                       </tr>
                     </thead class="border-b">
-                    <tbody>
- 
-                       
+                    <tbody>   
                         <tr class="bg-white border-b">
-                            
+                            <td class="text-sm flex justify-center text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                              <img  src="{{ url('public/Image/'.$etudiant->image) }}" class="text-center h-24 max-w-full rounded-full" alt="Photo_profile">
+                            </td> 
                             <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                 {{ $etudiant->nom }}
                             </td>

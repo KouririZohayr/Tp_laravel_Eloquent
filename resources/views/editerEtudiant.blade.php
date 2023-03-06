@@ -2,7 +2,8 @@
 @section('section')
     <div class="container lg:w-2/6 max-sm:w-full  sm:w-4/6 mt-10 mx-auto order-2 p-8 shadow-xl shadow-blue-500/40  " >
         <h1 class="text-4xl  font-bold text-red-600 mb-8 ">Modifier Etudiant </h1>
-        <form  action="{{ url('etudiants'.'/'. $etudiants->codeE )}}" method="POST" >
+
+        <form  action="{{ url('etudiants'.'/'. $etudiants->codeE )}}" method="POST" enctype="multipart/form-data">
           @method('patch')
           {{ csrf_field() }}
             <div class="flex flex-wrap -mx-3 mb-6">
@@ -40,6 +41,14 @@
             </div>
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full  px-3">
+                <label  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                  Photo de Profile
+                </label>
+                <input name="image" value="{{ $etudiants->image}}" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="file_input" type="file">
+              </div>
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full  px-3">
                 <label for="large" class="block mb-2 text-base font-medium text-gray-900 ">Classes {{ $etudiants->idclasse }}</label>
                 <select id="large" name="idclasse" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                   @foreach($classinfos as $classe)  
@@ -48,6 +57,7 @@
                 </select>
               </div>
             </div>
+            
             <div class="flex flex-wrap -mx-3 mb-6">
               <div class="w-full  px-3">
                 <label  class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
